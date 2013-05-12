@@ -6,6 +6,7 @@ rdiscount:
   extensions: [smart]
 
 name: Devang Sampat
+title: Day In Dev
 url: http://dayindev.com
 description: On not getting fired on Day 1  
 twitter: beowulfburritos
