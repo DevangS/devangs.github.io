@@ -1,0 +1,13 @@
+markdown: rdiscount
+pygments: true
+permalink: /posts/:title
+auto: true
+rdiscount:
+  extensions: [smart]
+
+name: Devang Sampat
+url: http://dayindev.com
+description: On not getting fired on Day 1  
+twitter: beowulfburritos
+github: DevangS 
+gravatar_url: http://www.gravatar.com/avatar/6b5cba862133e5f3f5d5a2f8e37e8f32.png
