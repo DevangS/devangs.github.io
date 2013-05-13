@@ -4,12 +4,57 @@
  <title>Devang Sampat</title>
  <link href="http://dayindev.com/atom.xml" rel="self"/>
  <link href="http://dayindev.com/"/>
- <updated>2013-05-12T14:58:38-07:00</updated>
+ <updated>2013-05-12T22:44:45-07:00</updated>
  <id>http://dayindev.com</id>
  <author>
    <name>Devang Sampat</name>
  </author>
  
+ 
+ <entry>
+   <title>What Programmers Can Learn From Pathological Gamblers</title>
+   <link href="http://dayindev.com/posts/what-programmers-can-learn-from-pathological-gamblers"/>
+   <updated>2013-05-12T00:00:00-07:00</updated>
+   <id>http://dayindev.com/posts/what-programmers-can-learn-from-pathological-gamblers</id>
+   <content type="html">&lt;p&gt;Think about how many times you&amp;rsquo;ve thought you were so close to something, that if you just kept at it for a little longer, then you&amp;rsquo;d finally succeed.
+&lt;img src=&quot;http://i.imgur.com/CPjsGaU.png&quot; alt=&quot;Imgur&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Others take the opposite approach. They belive that by continuing at the task, they could make things worse.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/GHgeCWj.jpg&quot; alt=&quot;Imgur&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;How do we know when to keep working, and when to call it a day?&lt;/p&gt;
+
+&lt;h2&gt;The Near Miss Effect&lt;/h2&gt;
+
+&lt;p&gt;Two years ago, researchers at the Southern Illnois University published a &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2861872/&quot;&gt;paper&lt;/a&gt; in which they ran an experiment on two groups of people: those who were pathlogical gamblers, and those who gambled, but not compulsively). The experiment simulated a slot machine which had three outcomes &amp;ndash; win, near miss, and loss. A near miss is when the slots mostly matched, except for one column. They found that:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Pathological gamblers were more excited about winning than nonpathological gamblers even when there was no actual monetary reward for a win&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Neurologically, pathlogical gamblers saw near misses as wins, while nonpathological gamblers saw near misses as losses&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Now in gambling, a near miss is in reality a loss. However, if we translate these results into a different field, then near misses might actually be very useful!&lt;/p&gt;
+
+&lt;h2&gt;The Pathological Programmer&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say you are now Joe Code Monkey. Instead of having an addiction to gambling, Joe  has somehow trained himself to have an addiction to writing software. His boss wants him to write The Next Big Thing for the company. So he starts by figuring out what features are needed, then he writes all your tests(woohoo TDD!), and now he needs to write the actual software. For the purposes of this example, we can simulate a slot machine here by saying that for every feature he writes and runs against the test bench, he will get one of three results:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;All the tests pass&lt;/li&gt;
+&lt;li&gt;Almost all tests pass&lt;/li&gt;
+&lt;li&gt;All tests fail&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Having become a pathological programmer, Joe get ones of those rushes that makes the hair on the back of his neck stand up not only when he finally has a 100% working feature, but he also when he ran a 80% working feature. This means that instead of calling it a day because he felt that he achieved nothing today, he keeps going and gets the entire feature done. What would previously have been an quite familiar 2am existental crisis, is now a source of inspiration to push forward!&lt;/p&gt;
+
+&lt;h2&gt;The Downside&lt;/h2&gt;
+
+&lt;p&gt;However, just like with being a pathological gambler, there can be harmful consequences to one&amp;rsquo;s personal life. Is spending all your time and money on your work really much better than spending all your time and money on gambling? Success may mean that your boss likes you and gives you a big raise, and of course there&amp;rsquo;s the dopamine hit, but winning also means you get a lot of money and a dopamine hit.  There is a risk of becoming a workaholic, of health concerns, of losing friends and family, all for nothing. Instead of giving you a raise, your boss might do the worst thing possible by &lt;strong&gt;NOT&lt;/strong&gt; firing you &amp;ndash; meaning that you have yet another day to come back, to play the slot machine.&lt;/p&gt;
+</content>
+ </entry>
  
  
 </feed>
