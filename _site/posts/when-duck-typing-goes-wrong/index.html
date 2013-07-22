@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+      When Duck Typing Goes Wrong &ndash;
+    
+    Devang Sampat
+  </title>
+
+  <meta name="author" content="Devang Sampat" />
+  <meta name="description" content="On not getting fired on Day 1" />
+
+  <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+
+  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/pygments.css" type="text/css" />
+  <link media="only screen and (max-device-width: 480px)" href="/css/iphone.css" type="text/css" rel="stylesheet" />
+  <link media="only screen and (device-width: 768px)" href="/css/iphone.css" type="text/css" rel="stylesheet" />
+  <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/application.js"></script>
+</head>
+
+<body>
+  <section class="sidebar">
+    <a href="/">
+      <img src="http://www.gravatar.com/avatar/6b5cba862133e5f3f5d5a2f8e37e8f32.png?s=150" height="75" width="75" class="avatar" />
+    </a>
+
+    <section class="name">
+      <a href="/">
+        <span id="fname">Devang</span>
+        <span id="lname">Sampat</span>
+      </a>
+    </section>
+
+    <section class="meta">
+      <a href="https://github.com/DevangS" target="_blank"><img src="/images/github.png" /></a>
+      <a href="https://twitter.com/beowulfburritos" target="_blank"><img src="/images/twitter.png"></a>
+      <a href="/atom.xml"><img src="/images/rss.png" /></a>
+    </section>
+
+    <section class="sections">
+      <ul>
+        <li><a href="/about.html">about</a></li>
+        <li><a href="/">posts</a></li>
+      </ul>
+    </section>
+  </section>
+
+  <section class="content">
+  <h1>
+    <a href="/posts/when-duck-typing-goes-wrong">When Duck Typing Goes Wrong</a>
+  </h1>
+
+  <section class="byline">
+    May 24, 2013
+  </section>
+
+  <h1>What Do We Want </h1>
+
+<p>Duck typing is the idea looking at the object
+based on its properties such as the types of the variables and methods it
+contains, instead of looking at an object based on what class it inherits from.</p>
+
+<h1>Why Do We Want It</h1>
+
+<p>Here&rsquo;s an example in Scala to demonstrate this, though it should be noted
+that technically Scala has <em>Structural Typing</em> which is a more robust version
+of duck typing, but the principle is the same. This should print out
+&ldquo;I am a man&rdquo; if a Male is passed in, and &ldquo;I am a woman&rdquo; if a Female is
+passed in.</p>
+
+<pre><code>object Male {
+    def speak(value: String) = {
+      "I am a man"
+    }
+}
+
+object Female {
+    def speak(value: String) = {
+      "I am a woman"
+    }
+}
+</code></pre>
+
+<p>Now we can define a method makeThemTalk that will accept anything that
+matches the description above:</p>
+
+<pre><code>def makeThemTalk(human: {def speak(value: String): String}) {
+    println(human.speak())
+}
+</code></pre>
+
+<p>There are several reasons why this is helpful &ndash; for one the code is cleaner,
+and more importantly, we can now pass in any object that has a speak method
+which takes in a String, and returns a String. There&rsquo;s no need to keep track
+of allowable object types nor is there a need to take an object oriented
+approach by making each object inherit from some superclass and then
+checking for the existence of such a relationship. This can quickly become
+dangerous however if one is not careful.</p>
+
+<h1>Why We Shouldn&rsquo;t Want It</h1>
+
+<p>Let&rsquo;s say I&rsquo;m working on some software that allows the police to arrest someone
+with the click of a button. So I write an object and method like this:</p>
+
+<pre><code>object BadGuy {
+  private var name = "Danny Ocean"
+  def getName() = {
+    name
+  }
+}
+
+def arrest(person: { def getName(): String}) {
+  findAndTerminate(person)
+}
+</code></pre>
+
+<p>This seems all fine and dandy, and indeed it works, but we must be careful.
+Let&rsquo;s say we wanted to expand our application so that we could look up
+the information for regular people as well. So we write:</p>
+
+<pre><code>object GoodGuy {
+  private var name = "Danny Doogooder"
+  def getName() = {
+    name
+  }
+}
+
+def getProfile(person: { def getName(): String}) {
+  findProfile(person)
+}
+</code></pre>
+
+<p>The problem here is that from the viewpoint of the arrest method, GoodGuy and
+BadGuy are structually equivalent. This means that it is just as easy to pass
+in a GoodGuy object to arrest, as it is to pass in a BadGuy. Using duck typing
+does away with the clear separation between objects that you get with using
+something like inheritance. As a result, it is easy to make a mistake like
+the above which can result in potential security issues by being able to
+pass objects to methods that you really do not want to be able to pass in.</p>
+
+
+  <section class="meta">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="beowulfburritos">Tweet</a>
+      <a href="http://twitter.com/beowulfburritos" class="twitter-follow-button" data-show-count="false">Follow @beowulfburritos</a>
+      <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+    </section>
+  </section>
+</section>
+
+</body>
+
+</html>

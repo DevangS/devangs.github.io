@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+      Blocking The Facebook Newsfeed &ndash;
+    
+    Devang Sampat
+  </title>
+
+  <meta name="author" content="Devang Sampat" />
+  <meta name="description" content="On not getting fired on Day 1" />
+
+  <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+
+  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/pygments.css" type="text/css" />
+  <link media="only screen and (max-device-width: 480px)" href="/css/iphone.css" type="text/css" rel="stylesheet" />
+  <link media="only screen and (device-width: 768px)" href="/css/iphone.css" type="text/css" rel="stylesheet" />
+  <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/application.js"></script>
+</head>
+
+<body>
+  <section class="sidebar">
+    <a href="/">
+      <img src="http://www.gravatar.com/avatar/6b5cba862133e5f3f5d5a2f8e37e8f32.png?s=150" height="75" width="75" class="avatar" />
+    </a>
+
+    <section class="name">
+      <a href="/">
+        <span id="fname">Devang</span>
+        <span id="lname">Sampat</span>
+      </a>
+    </section>
+
+    <section class="meta">
+      <a href="https://github.com/DevangS" target="_blank"><img src="/images/github.png" /></a>
+      <a href="https://twitter.com/beowulfburritos" target="_blank"><img src="/images/twitter.png"></a>
+      <a href="/atom.xml"><img src="/images/rss.png" /></a>
+    </section>
+
+    <section class="sections">
+      <ul>
+        <li><a href="/about.html">about</a></li>
+        <li><a href="/">posts</a></li>
+      </ul>
+    </section>
+  </section>
+
+  <section class="content">
+  <h1>
+    <a href="/posts/hiding-the-facebook-newsfeed">Blocking The Facebook Newsfeed</a>
+  </h1>
+
+  <section class="byline">
+    June  4, 2013
+  </section>
+
+  <h1>Why I Did It</h1>
+
+<p>I often find myself wanting to check my Facebook to see if I have any new messages or notifications. Regardless of their existence, I always end up wasting a significant amount of time simply scrolling through my news feed, every so often stopping at an item of interest.</p>
+
+<p>This adds no real value to my daily life because one of my friends will always inadvertently notify me in some form or the other about important updates in my friends' lives. The other updates are mere distractions that allow me to spend less time getting work done. As a result, I wanted to be able to block the news feed, but still access messages, notifications, and of course be able to specifically go to a friends page who I want to see updates for.</p>
+
+<h1>How To Do It</h1>
+
+<p>I did this by blocking the DIVs for Facebook by marking them as ads in <a href="https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom">AdBlock</a>. You can add the DIVs by right-clicking on the AdBlock icon &ndash;> Options &ndash;> Customize &ndash;> Manually Edit Filters.  Then add the following line:</p>
+
+<blockquote><p>www.facebook.com##DIV[id=&ldquo;pagelet_home_stream&rdquo;]</p></blockquote>
+
+<p>I also added the following lines to block the left and right side pane, because I thought it cluttered up the interface.</p>
+
+<blockquote><p>www.facebook.com##DIV[id=&ldquo;sideNav&rdquo;][class=&ldquo;uiFutureSideNav&rdquo;]
+www.facebook.com##DIV[id=&ldquo;pagelet_ego_pane_w&rdquo;]
+www.facebook.com##DIV[id=&ldquo;sideNav&rdquo;][class=&ldquo;uiFutureSideNav uiNarrowSideNav&rdquo;]</p></blockquote>
+
+<p>The result looks something like this: <img src="http://i.imgur.com/TydXWMZ.png?1" alt="Imgur" /></p>
+
+
+  <section class="meta">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="beowulfburritos">Tweet</a>
+      <a href="http://twitter.com/beowulfburritos" class="twitter-follow-button" data-show-count="false">Follow @beowulfburritos</a>
+      <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+    </section>
+  </section>
+</section>
+
+</body>
+
+</html>
