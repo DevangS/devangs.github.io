@@ -28,7 +28,7 @@
 <body>
   <section class="sidebar">
     <a href="/">
-      <img src="http://www.gravatar.com/avatar/6b5cba862133e5f3f5d5a2f8e37e8f32.png?s=150" height="75" width="75" class="avatar" />
+      <img src="https://www.gravatar.com/avatar/6b5cba862133e5f3f5d5a2f8e37e8f32.png?s=150" height="75" width="75" class="avatar" />
     </a>
 
     <section class="name">
@@ -61,25 +61,28 @@
     June  4, 2013
   </section>
 
-  <h1>Why I Did It</h1>
+  <h1 id="why-i-did-it">Why I Did It</h1>
 
 <p>I often find myself wanting to check my Facebook to see if I have any new messages or notifications. Regardless of their existence, I always end up wasting a significant amount of time simply scrolling through my news feed, every so often stopping at an item of interest.</p>
 
-<p>This adds no real value to my daily life because one of my friends will always inadvertently notify me in some form or the other about important updates in my friends' lives. The other updates are mere distractions that allow me to spend less time getting work done. As a result, I wanted to be able to block the news feed, but still access messages, notifications, and of course be able to specifically go to a friends page who I want to see updates for.</p>
+<p>This adds no real value to my daily life because one of my friends will always inadvertently notify me in some form or the other about important updates in my friends’ lives. The other updates are mere distractions that allow me to spend less time getting work done. As a result, I wanted to be able to block the news feed, but still access messages, notifications, and of course be able to specifically go to a friends page who I want to see updates for.</p>
 
-<h1>How To Do It</h1>
-
-<p>I did this by blocking the DIVs for Facebook by marking them as ads in <a href="https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom">AdBlock</a>. You can add the DIVs by right-clicking on the AdBlock icon &ndash;> Options &ndash;> Customize &ndash;> Manually Edit Filters.  Then add the following line:</p>
-
-<blockquote><p>www.facebook.com##DIV[id=&ldquo;pagelet_home_stream&rdquo;]</p></blockquote>
+<h1 id="how-to-do-it">How To Do It</h1>
+<p>I did this by blocking the DIVs for Facebook by marking them as ads in <a href="https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom">AdBlock</a>. You can add the DIVs by right-clicking on the AdBlock icon -&gt; Options -&gt; Customize -&gt; Manually Edit Filters.  Then add the following line:</p>
+<blockquote>
+  <p>www.facebook.com##DIV[id=”pagelet_home_stream”]</p>
+</blockquote>
 
 <p>I also added the following lines to block the left and right side pane, because I thought it cluttered up the interface.</p>
 
-<blockquote><p>www.facebook.com##DIV[id=&ldquo;sideNav&rdquo;][class=&ldquo;uiFutureSideNav&rdquo;]
-www.facebook.com##DIV[id=&ldquo;pagelet_ego_pane_w&rdquo;]
-www.facebook.com##DIV[id=&ldquo;sideNav&rdquo;][class=&ldquo;uiFutureSideNav uiNarrowSideNav&rdquo;]</p></blockquote>
+<blockquote>
+  <p>www.facebook.com##DIV[id=”sideNav”][class=”uiFutureSideNav”]
+www.facebook.com##DIV[id=”pagelet_ego_pane_w”]
+www.facebook.com##DIV[id=”sideNav”][class=”uiFutureSideNav uiNarrowSideNav”]</p>
+</blockquote>
 
 <p>The result looks something like this: <img src="http://i.imgur.com/TydXWMZ.png?1" alt="Imgur" /></p>
+
 
 
   <section class="meta">

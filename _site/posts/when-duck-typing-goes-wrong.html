@@ -28,7 +28,7 @@
 <body>
   <section class="sidebar">
     <a href="/">
-      <img src="http://www.gravatar.com/avatar/6b5cba862133e5f3f5d5a2f8e37e8f32.png?s=150" height="75" width="75" class="avatar" />
+      <img src="https://www.gravatar.com/avatar/6b5cba862133e5f3f5d5a2f8e37e8f32.png?s=150" height="75" width="75" class="avatar" />
     </a>
 
     <section class="name">
@@ -61,55 +61,52 @@
     May 24, 2013
   </section>
 
-  <h1>What Do We Want </h1>
-
+  <h1 id="what-do-we-want">What Do We Want</h1>
 <p>Duck typing is the idea looking at the object
 based on its properties such as the types of the variables and methods it
 contains, instead of looking at an object based on what class it inherits from.</p>
 
-<h1>Why Do We Want It</h1>
-
-<p>Here&rsquo;s an example in Scala to demonstrate this, though it should be noted
-that technically Scala has <em>Structural Typing</em> which is a more robust version
-of duck typing, but the principle is the same. This should print out
-&ldquo;I am a man&rdquo; if a Male is passed in, and &ldquo;I am a woman&rdquo; if a Female is
+<h1 id="why-do-we-want-it">Why Do We Want It</h1>
+<p>Here’s an example in Scala to demonstrate this, though it should be noted 
+that technically Scala has <em>Structural Typing</em> which is a more robust version 
+of duck typing, but the principle is the same. This should print out 
+“I am a man” if a Male is passed in, and “I am a woman” if a Female is 
 passed in.</p>
 
-<pre><code>object Male {
-    def speak(value: String) = {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>object Male {
+	def speak(value: String) = {
       "I am a man"
     }
 }
 
 object Female {
-    def speak(value: String) = {
-      "I am a woman"
-    }
+	def speak(value: String) = {
+	  "I am a woman"
+	}
 }
-</code></pre>
+</code></pre></div></div>
 
 <p>Now we can define a method makeThemTalk that will accept anything that
 matches the description above:</p>
 
-<pre><code>def makeThemTalk(human: {def speak(value: String): String}) {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def makeThemTalk(human: {def speak(value: String): String}) {
     println(human.speak())
 }
-</code></pre>
+</code></pre></div></div>
 
-<p>There are several reasons why this is helpful &ndash; for one the code is cleaner,
+<p>There are several reasons why this is helpful - for one the code is cleaner,
 and more importantly, we can now pass in any object that has a speak method
-which takes in a String, and returns a String. There&rsquo;s no need to keep track
+which takes in a String, and returns a String. There’s no need to keep track
 of allowable object types nor is there a need to take an object oriented
-approach by making each object inherit from some superclass and then
+approach by making each object inherit from some superclass and then 
 checking for the existence of such a relationship. This can quickly become
 dangerous however if one is not careful.</p>
 
-<h1>Why We Shouldn&rsquo;t Want It</h1>
-
-<p>Let&rsquo;s say I&rsquo;m working on some software that allows the police to arrest someone
+<h1 id="why-we-shouldnt-want-it">Why We Shouldn’t Want It</h1>
+<p>Let’s say I’m working on some software that allows the police to arrest someone
 with the click of a button. So I write an object and method like this:</p>
 
-<pre><code>object BadGuy {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>object BadGuy {
   private var name = "Danny Ocean"
   def getName() = {
     name
@@ -119,13 +116,13 @@ with the click of a button. So I write an object and method like this:</p>
 def arrest(person: { def getName(): String}) {
   findAndTerminate(person)
 }
-</code></pre>
+</code></pre></div></div>
 
 <p>This seems all fine and dandy, and indeed it works, but we must be careful.
-Let&rsquo;s say we wanted to expand our application so that we could look up
+Let’s say we wanted to expand our application so that we could look up
 the information for regular people as well. So we write:</p>
 
-<pre><code>object GoodGuy {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>object GoodGuy {
   private var name = "Danny Doogooder"
   def getName() = {
     name
@@ -135,7 +132,7 @@ the information for regular people as well. So we write:</p>
 def getProfile(person: { def getName(): String}) {
   findProfile(person)
 }
-</code></pre>
+</code></pre></div></div>
 
 <p>The problem here is that from the viewpoint of the arrest method, GoodGuy and
 BadGuy are structually equivalent. This means that it is just as easy to pass

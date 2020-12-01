@@ -1,9 +1,7 @@
-markdown: rdiscount
+markdown: kramdown
 pygments: true
 permalink: /posts/:title
 auto: true
-rdiscount:
-  extensions: [smart]
 
 name: Devang Sampat
 title: Day In Dev
