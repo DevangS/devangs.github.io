@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+      Monkey patching DNS lookups in Python &ndash;
+    
+    Devang Sampat
+  </title>
+
+  <meta name="author" content="Devang Sampat" />
+  <meta name="description" content="On not getting fired on Day 1" />
+
+  <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+
+  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/pygments.css" type="text/css" />
+  <link media="only screen and (max-device-width: 480px)" href="/css/iphone.css" type="text/css" rel="stylesheet" />
+  <link media="only screen and (device-width: 768px)" href="/css/iphone.css" type="text/css" rel="stylesheet" />
+  <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/application.js"></script>
+</head>
+
+<body>
+  <section class="sidebar">
+    <a href="/">
+      <img src="https://www.gravatar.com/avatar/6b5cba862133e5f3f5d5a2f8e37e8f32.png?s=150" height="75" width="75" class="avatar" />
+    </a>
+
+    <section class="name">
+      <a href="/">
+        <span id="fname">Devang</span>
+        <span id="lname">Sampat</span>
+      </a>
+    </section>
+
+    <section class="meta">
+      <a href="https://github.com/DevangS" target="_blank"><img src="/images/github.png" /></a>
+      <a href="/atom.xml"><img src="/images/rss.png" /></a>
+    </section>
+
+    <section class="sections">
+      <ul>
+        <li><a href="/about.html">about</a></li>
+        <li><a href="/">posts</a></li>
+      </ul>
+    </section>
+  </section>
+
+  <section class="content">
+  <h1>
+    <a href="/posts/python-dns-monkeypatch">Monkey patching DNS lookups in Python</a>
+  </h1>
+
+  <section class="byline">
+    December  2, 2020
+  </section>
+
+  <h1 id="background">Background</h1>
+<p>Working in infrastructure can be incredibly rewarding. You get the opportunity to build systems that scale to millions of users and operate under tight latency tolerances. Most nascent companies run their services in containers, but children, come close to the fire, and let me tell you about some tales about the cowboy days of devops. Days long before there were clouds of compute, and oceans of containers.</p>
+
+<p>A time where you had to get an IPMI shell to revive a machine, and when the interface between dev and ops were python modules rather than Dockerfiles.</p>
+
+<p>Once upon a time, there existed monolithic services. Where configuration as code meant hardcoding URLs for dependencies inline. I may never have written such code, but I have surely been entrusted with its maintenance.</p>
+
+<p>This is the first in a series of posts where we visit the snowdens of yesteryear.</p>
+
+<h1 id="problem">Problem</h1>
+<p>Given a legacy 3K LOC repository, we want to be able to reshape all traffic for 1 or more domains.</p>
+
+<h1 id="how">How</h1>
+<p>So how exactly do we implement this? We will override the DNS lookup done by a socket. In python this is implemented by <a href="https://docs.python.org/2.6/library/socket.html#socket.getaddrinfo">socket.getaddrinfo</a></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def _override_socket_dns(lookups):
+    actual_getaddrinfo = socket.getaddrinfo
+
+    def new_getaddrinfo(*args):
+	override = lookups.get(args[0])
+	if override is not None:
+	    return actual_getaddrinfo(override, *args[1:])
+	return actual_getaddrinfo(*args)
+
+    return new_getaddrinfo
+
+# example usage of the above
+rsp = requests.get(‘https://dayindev.com’)
+overrides = {‘dayindev.com’: [‘1.1.1.1’, ‘cnamesarecooltoo.dayindev.com’]
+socket.getaddrinfo = _override_socket_dns(overrides)
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+# will make a request to our overriden records instead! 
+rsp = requests.get(‘https://dayindev.com’)
+</code></pre></div></div>
+
+<h1 id="use-cases">Use cases</h1>
+<p>The above implement chooses to globally override all lookups, but you can be more selective depending on your end goals. Some ideas:</p>
+
+<ul>
+  <li>Implement client side load balancing to do canaries, failovers, and blue/green deployments</li>
+  <li>Decrypt outbound SSL traffic by rerouting all lookups to a local mitmproxy instance</li>
+</ul>
+
+
+
+</section>
+
+</body>
+
+</html>
